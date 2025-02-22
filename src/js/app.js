@@ -1,8 +1,11 @@
-export default function healthCheck(character) {
-  if (character.health > 50) {
-    return 'healthy';
-  } if (character.health <= 50 && character.health >= 15) {
-    return 'wounded';
-  }
-  return 'critical';
+export default function sortHealth(characters) {
+  return characters.sort((a, b) => {
+    if (a.health > b.health) {
+      return -1;
+    }
+    if (a.health < b.health) {
+      return 1;
+    }
+    return 0;
+  });
 }

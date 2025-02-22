@@ -1,10 +1,18 @@
-import healthCheck from '../app.js';
+import sortHealth from '../app.js';
 
-test.each([
-  ['healthy', { name: 'Маг', health: 90 }, 'healthy'],
-  ['wounded', { name: 'Лучник', health: 45 }, 'wounded'],
-  ['critical', { name: 'Воин', health: 10 }, 'critical'],
-])('testing %s status', (status, char, expected) => {
-  const result = healthCheck(char);
-  expect(result).toBe(expected);
+test('sort charectars', () => {
+  const charactersList = [
+    { name: 'мечник', health: 10 },
+    { name: 'маг', health: 100 },
+    { name: 'маг2', health: 100 },
+    { name: 'лучник', health: 80 },
+  ];
+
+  const result = sortHealth(charactersList);
+  expect(result).toEqual([
+    { name: 'маг', health: 100 },
+    { name: 'маг2', health: 100 },
+    { name: 'лучник', health: 80 },
+    { name: 'мечник', health: 10 },
+  ]);
 });
